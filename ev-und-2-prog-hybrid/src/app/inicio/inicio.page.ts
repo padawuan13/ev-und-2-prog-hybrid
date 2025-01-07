@@ -14,14 +14,14 @@ import { Router } from '@angular/router';
 })
 export class InicioPage implements OnInit {
   citaActual: { frase: string; autor: string } | null = null;
-  permitirEliminar: boolean = false; // Inicializado con un valor predeterminado
+  permitirEliminar: boolean = false; 
 
   constructor(private citasService: CitasService, private router: Router) {}
 
   async ngOnInit() {
     this.mostrarCitaAleatoria();
 
-    // Ajuste aquí: Resuelve el Promise<boolean> usando await
+    
     this.permitirEliminar = await this.citasService.getPermitirEliminar();
   }
 
