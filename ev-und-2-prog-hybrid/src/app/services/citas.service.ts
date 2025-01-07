@@ -27,20 +27,20 @@ export class CitasService {
     try {
       const dbName = 'citasDB';
   
-      // Crear conexión a SQLite con validación de tipo
+      // crear conexión a SQLite con validación de tipo
       const connection = await this.sqlite.createConnection({
         database: dbName,
         version: 1,
         encrypted: false,
         mode: 'no-encryption',
-      }) as unknown as SQLiteDBConnection; // Ajuste de tipo
+      }) as unknown as SQLiteDBConnection; // ajuste de tipo
   
       if (!connection) {
         throw new Error('No se pudo establecer la conexión con SQLite.');
       }
   
-      this.db = connection; // Asignar la conexión a this.db
-      await this.db.open(); // Abrir la base de datos
+      this.db = connection; // asignar la conexión a this.db
+      await this.db.open(); // abrir la base de datos
   
       const query = `
         CREATE TABLE IF NOT EXISTS citas (
@@ -51,7 +51,7 @@ export class CitasService {
       `;
       await this.db.execute(query);
   
-      // Verificar si la tabla está vacía e insertar citas iniciales
+      // verificar si la tabla está vacía e insertar citas iniciales
       const countQuery = `SELECT COUNT(*) AS count FROM citas;`;
       const result = await this.db.query(countQuery);
   
@@ -68,7 +68,7 @@ export class CitasService {
         }
       }
   
-      // Cargar las citas en memoria
+      // cargar las citas en memoria
       await this.loadCitas();
     } catch (error) {
       console.error('Error al inicializar la base de datos:', error);
