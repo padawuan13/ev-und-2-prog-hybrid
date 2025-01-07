@@ -1,0 +1,22 @@
+.form-container {
+    margin-bottom: 20px;
+  }
+  
+  .lista-citas {
+    margin-top: 10px; /* Reduce el espacio entre el formulario y la lista */
+  }
+  
+  ion-item {
+    --min-height: 50px; /* Reduce la altura mínima de los ítems para compactar */
+  }
+  
+  ion-button {
+    margin: 5px 0; /* Ajusta el margen entre botones */
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.9em;
+    margin-left: 16px;
+  }
+  

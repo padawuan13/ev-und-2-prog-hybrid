@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    <ion-button (click)="volverAInicio()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    </ion-buttons>
+    <ion-title>Gestion de Citas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="form-container">
+  <ion-item>
+    <ion-input placeholder="Frase" [(ngModel)]="nuevaFrase" required minlength="5" #fraseInput="ngModel"></ion-input>
+  </ion-item>
+  <div *ngIf="fraseInput.invalid && fraseInput.touched">
+    <p *ngIf="fraseInput.errors?.['required']" class="error">La frase es obligatoria.</p>
+    <p *ngIf="fraseInput.errors?.['minlength']" class="error">
+      La frase debe tener al menos 5 caracteres.
+    </p>
+  </div>
+
+  <ion-item>
+    <ion-input placeholder="Autor" [(ngModel)]="nuevoAutor" required minlength="2" #autorInput="ngModel"></ion-input>
+  </ion-item>
+  <div *ngIf="autorInput.invalid && autorInput.touched">
+    <p *ngIf="autorInput.errors?.['required']" class="error">El autor es obligatorio.</p>
+    <p *ngIf="autorInput.errors?.['minlength']" class="error">
+      El autor debe tener al menos 2 caracteres.
+    </p>
+  </div>
+
+  <ion-button expand="full" (click)="agregarCita()" [disabled]="fraseInput.invalid || autorInput.invalid">Agregar</ion-button>
+  </div>
+
+  <ion-list class="lista-citas">
+    <ion-item *ngFor="let cita of citas; let i = index">
+      <ion-label>
+        <p>{{ cita.frase }}</p>
+        <p><strong>{{ cita.autor }}</strong></p>
+      </ion-label>
+      <ion-button color="danger" (click)="deleteCita(cita)">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
